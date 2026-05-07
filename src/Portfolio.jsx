@@ -384,7 +384,6 @@ const styles = {
           position: "sticky", top: 0, zIndex: 100,
           backdropFilter: "blur(20px)", WebkitBackdropFilter: "blur(20px)",
           background: dark ? "rgba(18,19,28,0.82)" : "rgba(240,242,248,0.82)",
-          borderBottom: `1px solid rgba(164,149,255,${dark ? 0.15 : 0.2})`,
           padding: "14px 0",
         }}>
           <div style={{ ...styles.wrap, display: "flex", alignItems: "center", justifyContent: "space-between", paddingTop: 0, paddingBottom: 0 }}>
@@ -580,7 +579,7 @@ const styles = {
                 {[
                   { degree: "B.Tech — CSE AI & ML", inst: "Aditya College of Engineering & Technology, Surampalem", year: "2022–2026", score: "GPA: 7.27", icon: "🎓" },
                   { degree: "Intermediate", inst: "Sri Chaitanya Junior College, Kakinada", year: "2020–2022", score: "63.5%", icon: "📚" },
-                  { degree: "SSC", inst: "Z.P.P. High School, Kajuluru", year: "—", score: "98%", icon: "🏫" },
+                  { degree: "SSC", inst: "Z.P.P. High School, Kajuluru", year: "2019-2020", score: "98%", icon: "🏫" },
                 ].map(e => (
                   <div key={e.degree} style={{
                     padding: "16px 18px", borderRadius: 12,
