@@ -670,16 +670,16 @@ const styles = {
 
      <style>{`
         * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
         
-        /* THIS IS THE FIX FOR THE WHITE BORDER */
-        html, body { 
+        /* This removes the white lines on the sides */
+        body { 
           margin: 0; 
           padding: 0; 
-          width: 100%; 
           overflow-x: hidden; 
+          background: #12131C; 
         }
-
-        html { scroll-behavior: smooth; }
+        
         @media (max-width: 700px) {
           [style*="gridColumn: span 7"], [style*="gridColumn: span 5"],
           [style*="gridColumn: span 6"], [style*="gridColumn: span 12"] {
