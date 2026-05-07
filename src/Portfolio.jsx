@@ -60,7 +60,7 @@ function StarCanvas() {
         const alpha = s.opacity * (0.6 + 0.4 * Math.sin(s.twinkle));
         ctx.beginPath();
         ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(200, 210, 255, ${alpha})`;
+        ctx.fillStyle = `rgba(164, 149, 255, ${alpha})`;
         ctx.fill();
       });
 
@@ -76,8 +76,8 @@ function StarCanvas() {
           sh.x - Math.cos(sh.angle) * sh.len,
           sh.y - Math.sin(sh.angle) * sh.len
         );
-        grad.addColorStop(0, `rgba(200, 200, 255, ${sh.life * 0.9})`);
-        grad.addColorStop(1, "rgba(200, 200, 255, 0)");
+        grad.addColorStop(0, `rgba(164, 149, 255, ${sh.life * 0.9})`);
+        grad.addColorStop(1, "rgba(164, 149, 255, 0)");
         ctx.beginPath();
         ctx.moveTo(sh.x, sh.y);
         ctx.lineTo(sh.x - Math.cos(sh.angle) * sh.len, sh.y - Math.sin(sh.angle) * sh.len);
@@ -119,7 +119,7 @@ function LeafCanvas() {
     resize();
     window.addEventListener("resize", resize);
 
-    const LEAF_COLORS = ["#A0C878", "#B8D98E", "#88B464", "#C8E6A0", "#7BA05B", "#D4EDAA", "#6B9E4D"];
+    const LEAF_COLORS = ["#A495FF", "#C6BFFF", "#E8E6FF", "#D0CAFF", "#B8AFFF"];
     const N = 40;
 
     const makeLeaf = () => ({
@@ -131,7 +131,7 @@ function LeafCanvas() {
       rot: Math.random() * Math.PI * 2,
       rotSpeed: (Math.random() - 0.5) * 0.04,
       color: LEAF_COLORS[Math.floor(Math.random() * LEAF_COLORS.length)],
-      opacity: Math.random() * 0.5 + 0.35,
+      opacity: Math.random() * 0.25 + 0.1,
       wobble: Math.random() * Math.PI * 2,
       wobbleSpeed: Math.random() * 0.02 + 0.005,
     });
@@ -177,13 +177,13 @@ function LeafCanvas() {
       ctx.globalAlpha = opacity;
       ctx.beginPath();
       ctx.arc(x, y, r, 0, Math.PI * 2);
-      ctx.fillStyle = "rgba(180,180,180,0.6)";
+      ctx.fillStyle = "rgba(164, 149, 255, 0.3)";
       ctx.fill();
       const angle = -Math.PI / 2 + (Math.random() - 0.5) * 0.3;
       ctx.beginPath();
       ctx.moveTo(x, y);
       ctx.lineTo(x + Math.cos(angle) * stemLen, y + Math.sin(angle) * stemLen);
-      ctx.strokeStyle = "rgba(150,150,150,0.5)";
+      ctx.strokeStyle = "rgba(164, 149, 255, 0.2)";
       ctx.lineWidth = 0.6;
       ctx.stroke();
       ctx.restore();
@@ -329,11 +329,10 @@ export default function Portfolio() {
   const subCol = dark ? "#A09AC8" : "#6b64a0";
   const cardText = dark ? "#e0dcff" : "#1a1730";
 
-  const styles = {
+const styles = {
     page: {
       minHeight: "100vh",
-      background: bg,
-      transition: "background 0.5s ease",
+      background: "transparent",
       fontFamily: "'DM Sans', 'Segoe UI', sans-serif",
       position: "relative",
       zIndex: 1,
@@ -366,9 +365,20 @@ export default function Portfolio() {
     <>
       <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Syne:wght@600;800&display=swap" rel="stylesheet" />
       <div style={overlayStyle} />
-      {dark ? <StarCanvas /> : <LeafCanvas />}
+      
+      {/* 1. Fixed Base Background Layer */}
+      <div style={{ position: "fixed", inset: 0, background: bg, transition: "background 0.5s ease", zIndex: -1 }} />
 
-      <div style={styles.page}>
+      {/* 2. Cross-fading Canvases */}
+      <div style={{ position: "fixed", inset: 0, opacity: dark ? 1 : 0, transition: "opacity 0.8s ease", zIndex: 0, pointerEvents: "none" }}>
+        <StarCanvas />
+      </div>
+      <div style={{ position: "fixed", inset: 0, opacity: dark ? 0 : 1, transition: "opacity 0.8s ease", zIndex: 0, pointerEvents: "none" }}>
+        <LeafCanvas />
+      </div>
+
+      {/* 3. Transparent page container */}
+      <div style={{ ...styles.page, background: "transparent", transition: "none" }}>
         {/* ── HEADER ── */}
         <header style={{
           position: "sticky", top: 0, zIndex: 100,
