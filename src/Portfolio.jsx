@@ -659,8 +659,17 @@ export default function Portfolio() {
         </div>
       </div>
 
-      <style>{`
+     <style>{`
         * { box-sizing: border-box; }
+        
+        /* THIS IS THE FIX FOR THE WHITE BORDER */
+        html, body { 
+          margin: 0; 
+          padding: 0; 
+          width: 100%; 
+          overflow-x: hidden; 
+        }
+
         html { scroll-behavior: smooth; }
         @media (max-width: 700px) {
           [style*="gridColumn: span 7"], [style*="gridColumn: span 5"],
