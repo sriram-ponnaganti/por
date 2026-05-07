@@ -668,18 +668,9 @@ const styles = {
         </div>
       </div>
 
-     <style>{`
+    <style>{`
         * { box-sizing: border-box; }
         html { scroll-behavior: smooth; }
-        
-        /* This removes the white lines on the sides */
-        body { 
-          margin: 0; 
-          padding: 0; 
-          overflow-x: hidden; 
-          background: #12131C; 
-        }
-        
         @media (max-width: 700px) {
           [style*="gridColumn: span 7"], [style*="gridColumn: span 5"],
           [style*="gridColumn: span 6"], [style*="gridColumn: span 12"] {
