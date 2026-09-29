@@ -395,7 +395,7 @@ const styles = {
             </div>
             <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
               <a
-                href="https://drive.google.com/uc?export=download&id=1MWQGQAjDldVirJIMmhuSWcSiBz_FAZlj"
+                href="https://drive.google.com/file/d/1gOs4O1na53NNIEhPwPcaoJJTYlJCa8Tp/view?usp=sharing"
                 target="_blank"
                 rel="noopener noreferrer"
                 download
